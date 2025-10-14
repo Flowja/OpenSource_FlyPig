@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+		"tab": "../../components/tab/tab",
+    "svg-icon": "wx-svg/index"
+  },
+  "navigationBarTitleText": "小彩猪"
+}

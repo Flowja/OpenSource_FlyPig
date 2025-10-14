@@ -1,0 +1,72 @@
+<view class="show-map-container">
+    <view>
+        <tab tabList="{{tabList}}" currentTab="{{tabIndex}}" bind:clickTab="onClickTab" />
+    </view>
+    <view class="map-container">
+        <view class="map-content {{tabIndex === 0 ? 'map-content-show' : '' }}">
+            <view class="map-panel pl20 pr20" hover-class="none" hover-stop-propagation="false">
+                <map class="map" markers="{{markers}}" latitude="{{location.latitude}}" longitude="{{location.longitude}}" scale="{{scale}}"></map>
+                <view class="floating-button" bindtap="onLocationButtonTap">
+                <image class="button-icon" src="/assets/loc.png" mode="aspectFit"></image>
+            </view>
+            </view>
+        </view>
+        <scroll-view scroll-y="true" style="height: 100%;">
+            <view class="map-content {{tabIndex === 1 ? 'map-content-show' : '' }}">
+                <view class="bg">
+                    <view class="panel">
+                        <svg-icon src="/assets/flypig v1.0 miniapp.svg" colors="{{colorObject}}" mode="widthFix" />
+                    </view>
+
+                    <view class="tabs">
+                        <block wx:for="{{parts}}" wx:key="key">
+                            <button class="tab {{currentPart.key===item.key?'active':''}}" bindtap="selectPart" data-part="{{item.name}}" data-key="{{item.key}}">
+                                {{item.name}}
+                            </button>
+                        </block>
+                    </view>
+                    <view class="radio-group">
+                        <radio-group bindchange="onRadioChange">
+                            <label>
+                                <radio value="" checked="{{mode === ''}}" /><text>无</text>
+                            </label>
+                            <label>
+                                <radio value="animation" checked="{{mode === 'animation'}}" /><text>动画</text>
+                            </label>
+                            <label>
+                                <radio value="time" checked="{{mode === 'time'}}" /><text>时间</text>
+                            </label>
+                            <label>
+                                <radio value="battery" checked="{{mode === 'battery'}}" /><text>电量</text>
+                            </label>
+                        </radio-group>
+                    </view>
+                    <view class="frametime">
+                        <text>帧时间</text>
+                        <input type="number" class="frametime-input" value="{{frameTime}}" bindblur="onFrameTimeInput" />
+                    </view>
+                    <view class="sliders">
+                        <view class="slider-item">
+                            <text>R: {{currentColor.r}}</text>
+                            <slider min="0" max="255" value="{{currentColor.r}}" data-channel="r" bindchange="onSliderChange" />
+                        </view>
+                        <view class="slider-item">
+                            <text>G: {{currentColor.g}}</text>
+                            <slider min="0" max="255" value="{{currentColor.g}}" data-channel="g" bindchange="onSliderChange" />
+                        </view>
+                        <view class="slider-item">
+                            <text>B: {{currentColor.b}}</text>
+                            <slider min="0" max="255" value="{{currentColor.b}}" data-channel="b" bindchange="onSliderChange" />
+                        </view>
+                    </view>
+
+                    <view class="preview" style="background-color: {{colorObject[currentPart.key]}}">
+                        <input type="text" class="color-input" placeholder="#RRGGBB" value="{{colorObject[currentPart.key]}}" bindblur="onHexInput" />
+                    </view>
+
+                    <button class="submit-btn" bindtap="submit">提交</button>
+                </view>
+            </view>
+        </scroll-view>
+    </view>
+</view>

@@ -1,0 +1,13 @@
+/**app.wxss**/
+
+page, view, scroll-view, swiper, movable-area, cover-view, text, icon, rich-text,
+progress, button, checkbox-group, checkbox, form, input, label, picker,
+picker-view, radio-group, slider, switch, textarea, navigator, audio, video, live-player, live-pusher, open-data, web-view {
+  box-sizing: border-box;
+}
+
+page {
+    width: 100%;
+    height: 100%;
+	background: #F8F8F7;
+}

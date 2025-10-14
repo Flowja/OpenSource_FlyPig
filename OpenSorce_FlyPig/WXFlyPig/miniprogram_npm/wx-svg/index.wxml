@@ -1,0 +1,7 @@
+<image
+  class="svg-icon image-class"
+  src="{{base64}}"
+  mode="{{mode}}"
+  binderror="onImageError"
+  bindload="onImageLoad"
+/>
